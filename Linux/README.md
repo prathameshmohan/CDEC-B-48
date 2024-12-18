@@ -476,3 +476,5 @@ Linux provides several shortcuts to improve efficiency while navigating the file
 Understanding the Linux file system hierarchy and shortcuts enhances your ability to navigate and manage files effectively. Master these concepts to become more proficient with the Linux operating system.
 
 
+----
+
