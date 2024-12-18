@@ -1332,4 +1332,6 @@ System-defined file types are pre-configured by Linux to manage system functiona
 ---
 
 Feel free to experiment with these commands to better understand Linux permissions and file types.
+
 ----
+
