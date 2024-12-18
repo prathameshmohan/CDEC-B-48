@@ -1490,4 +1490,202 @@ sudo -k apt install nginx
 ---
 By mastering these concepts and commands, you can efficiently manage users and permissions in Linux. Practice with real-world scenarios to solidify your understanding!
 
+---
+
+# Day 14: Automation and Data Handling in Linux
+
+## Overview of Archiving
+Archiving is the process of combining multiple files and directories into a single file. This is especially useful for backups, data transfer, and organization.
+
+### Common Use Cases:
+1. **Backups:** Safeguard data by creating archives that can be stored securely.
+2. **Data Transfer:** Simplify sharing by bundling multiple files into a single archive.
+3. **Organization:** Group related files for better management.
+
+## Creating and Extracting Archives with `tar`
+
+### **Creating an Archive:**
+```bash
+# Syntax:
+tar -cvf archive_name.tar file1 file2 directory/
+
+# Example:
+tar -cvf project_backup.tar project_folder/
+```
+- **Options:**
+  - `-c`: Create an archive.
+  - `-v`: Verbose output (show progress).
+  - `-f`: Specify the file name.
+
+### **Extracting an Archive:**
+```bash
+# Syntax:
+tar -xvf archive_name.tar
+
+# Example:
+tar -xvf project_backup.tar
+```
+- **Options:**
+  - `-x`: Extract an archive.
+
+### **Managing Archive Contents:**
+- **View Contents of an Archive:**
+```bash
+tar -tvf archive_name.tar
+```
+- **Add Files to an Existing Archive:**
+```bash
+tar -rvf archive_name.tar new_file.txt
+```
+- **Remove a File from an Archive (requires `--delete` option):**
+```bash
+tar --delete -f archive_name.tar unwanted_file.txt
+```
+
+## Introduction to Compression
+Compression reduces file sizes by encoding data efficiently. It helps save storage and speeds up data transfer.
+
+### **Common Compression Formats:**
+- **gzip:** Good compression and widely supported.
+- **bzip2:** Better compression than gzip but slower.
+- **xz:** Best compression but slowest.
+
+### **Using gzip and gunzip:**
+- **Compress a File:**
+```bash
+gzip file_name
+```
+- **Decompress a File:**
+```bash
+gunzip file_name.gz
+```
+
+### **Using bzip2 and bunzip2:**
+- **Compress a File:**
+```bash
+bzip2 file_name
+```
+- **Decompress a File:**
+```bash
+bunzip2 file_name.bz2
+```
+
+### **Using xz and unxz:**
+- **Compress a File:**
+```bash
+xz file_name
+```
+- **Decompress a File:**
+```bash
+unxz file_name.xz
+```
+
+## Combining Archiving and Compression
+
+### **Create a Compressed tar Archive:**
+- Using gzip:
+```bash
+tar -czvf archive_name.tar.gz file1 file2 directory/
+```
+- Using bzip2:
+```bash
+tar -cjvf archive_name.tar.bz2 file1 file2 directory/
+```
+- Using xz:
+```bash
+tar -cJvf archive_name.tar.xz file1 file2 directory/
+```
+
+### **Extract a Compressed tar Archive:**
+- Using gzip:
+```bash
+tar -xzvf archive_name.tar.gz
+```
+- Using bzip2:
+```bash
+tar -xjvf archive_name.tar.bz2
+```
+- Using xz:
+```bash
+tar -xJvf archive_name.tar.xz
+```
+
+## Practical Examples
+### **Compressing Files:**
+```bash
+# Compress using gzip:
+tar -czvf documents.tar.gz Documents/
+
+# Compress using bzip2:
+tar -cjvf logs.tar.bz2 Logs/
+
+# Compress using xz:
+tar -cJvf archive.tar.xz Folder/
+```
+
+### **Decompressing Files:**
+```bash
+# Decompress using gzip:
+tar -xzvf documents.tar.gz
+
+# Decompress using bzip2:
+tar -xjvf logs.tar.bz2
+
+# Decompress using xz:
+tar -xJvf archive.tar.xz
+```
+
+## Introduction to CronTab
+CronTab allows scheduling of recurring tasks such as backups, system updates, and cleanup scripts.
+
+### **Understanding the CronTab Syntax:**
+CronTab entries have five fields:
+```
+* * * * * command_to_execute
+- - - - -
+| | | | |
+| | | | +----- Day of the week (0 - 7) (Sunday = 0 or 7)
+| | | +------- Month (1 - 12)
+| | +--------- Day of the month (1 - 31)
+| +----------- Hour (0 - 23)
++------------- Minute (0 - 59)
+```
+
+### **Creating and Managing Cron Jobs:**
+- **View Existing Cron Jobs:**
+```bash
+crontab -l
+```
+- **Edit Cron Jobs:**
+```bash
+crontab -e
+```
+- **Delete All Cron Jobs:**
+```bash
+crontab -r
+```
+
+### **Practical Examples:**
+1. **Automate Backups Every Day at Midnight:**
+```bash
+0 0 * * * tar -czvf /backup/home_$(date +\%F).tar.gz /home/user/
+```
+2. **Clean Temporary Files Every Week:**
+```bash
+0 0 * * 0 rm -rf /tmp/*
+```
+3. **Run a System Update Every Month:**
+```bash
+0 2 1 * * apt-get update && apt-get upgrade -y
+```
+
+### **Validate Cron Jobs:**
+Use the `journalctl` command to check logs and ensure jobs run as scheduled:
+```bash
+journalctl -u cron
+```
+
+---
+This guide provides comprehensive knowledge of archiving, compression, and automation using CronTab in Linux. Practice these tasks regularly to build expertise.
+
 
