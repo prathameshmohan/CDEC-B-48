@@ -305,4 +305,6 @@ Learn commands to retrieve system details:
 
 Mastering these elements will empower you to utilize Linux effectively and confidently.
 
+----
+
 
