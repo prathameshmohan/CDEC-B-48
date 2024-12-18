@@ -85,3 +85,5 @@ An application is a software program designed to perform a specific set of tasks
 
 ### Conclusion:
 DevOps plays a crucial role in modern IT companies by ensuring smooth collaboration and faster software delivery. Understanding how IT companies function and the roles of developers, testers, and DevOps engineers is essential for any aspiring professional.
+
+-------
